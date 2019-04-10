@@ -33,40 +33,56 @@ function calculatePay(startTime, endTime, family){
 function babysatForFamilyA(start, end){
     // Family A pays $15 per hour before 11pm, 
     // $20 per hour the rest of the night
-    const dateStart = new Date(end);
+    const dateStart = new Date(start);
     const dateEnd = new Date(end);
     const startTime = dateStart.getHours();
     const endTime = dateEnd.getHours();
     let totalPayment = 0;
 
-    /*
-    if start and end before 11
-        rate is 15 * hrs work
-
-    if start before 11 && end time after 11
-        if(end time = 12)
-            rate is ((11-startTime)* 15) + 20 
-        if(end time < 4){
-            (rate is (11-startTime)* 15) + 20 + (20 * endTime)
-        }
-    */
-
-    if(endTime <= 11 && endTime > 4 && startTime < 12){
-        //leaving before 11am
-        totalPayment = (endTime - startTime) * 15;
-    }
-    if(startTime < 12 && endTime == 12){
-        // leaving before 12
-        totalPayment = (15 *(11 - (startTime-1))) + 20;
-        
-    }
-    if(startTime < 11 && endTime <=4){
-        // leaving after midnight
-        const payToMidnight = (15 *(11 - startTime-1)) + 20;
-        totalPayment = (20 * endTime) + payToMidnight;
-    }
+    totalPayment += hourlyRate(startTime, endTime, 15, 17, 23); // $15/hr
+    totalPayment += hourlyRate(startTime, endTime, 20, 23, 4); // $20/hr
 
     return totalPayment;
+}
+
+function hourlyRate(startTime, endTime, rate, rateWindowStart, rateWindowEnd){
+    // startTime = 17;
+    // endTime = 4;
+    // rate = 20;
+    // rateWindowStart = 23;
+    // rateWindowEnd = 28;
+    let earningStartTime = 0;
+    let earningEndTime = 0;
+
+    if(endTime < 5){
+        endTime = endTime + 24;
+    }
+
+    if(rateWindowEnd < 5){
+        rateWindowEnd = rateWindowEnd + 24;
+    }
+
+    //if the start time is before or equal to ratewindowstart use rateWindowStart
+    //if the end time is after or equal to ratewindowEnd use rateWindowEnd
+
+    //if start is more than the start window, and less than the end window use start time
+    //if the end is more than the start window and less than the end window use end time
+
+    if(startTime <= rateWindowStart){
+        earningStartTime = rateWindowStart;
+    }
+    if(endTime >= rateWindowEnd){
+        earningEndTime = rateWindowEnd;
+    }
+    if(startTime > rateWindowStart && startTime < rateWindowEnd){
+        earningStartTime = startTime;
+    }
+    if(endTime > rateWindowStart && endTime < rateWindowEnd){
+        earningEndTime = endTime;
+    }
+
+    return (earningEndTime - earningStartTime) * rate;
+
 }
 
 function babysatForFamilyB(dateStart, dateEnd){
