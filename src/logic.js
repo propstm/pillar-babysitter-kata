@@ -79,8 +79,14 @@ function hourlyRate(startTime, endTime, rate, rateWindowStart, rateWindowEnd){
     if(startTime > rateWindowStart && startTime < rateWindowEnd){
         earningStartTime = startTime;
     }
-    if(endTime > rateWindowStart && endTime < rateWindowEnd){
+    if(endTime >= rateWindowStart && endTime < rateWindowEnd){
         earningEndTime = endTime;
+    }
+
+//    return earningStartTime;
+//    return earningEndTime;
+    if((earningEndTime - earningStartTime) === 0){
+        return rate; //pay one hour
     }
 
     return (earningEndTime - earningStartTime) * rate;
@@ -161,5 +167,11 @@ module.exports = {
     },
     workedThreeHoursWithOneRateFamilyA(){
         return calculatePay("2018-06-12T17:20", "2018-06-13T20:20", "family A");
-    }
+    },
+    workedOneMinuteFamilyA(){
+        return calculatePay("2018-06-12T17:20", "2018-06-13T17:21", "family A");
+    },
+    workedTwoHoursFourMinutesFamilyB(){
+        return calculatePay("2018-06-12T21:58", "2018-06-13T00:02", "family B");
+    }    
 };

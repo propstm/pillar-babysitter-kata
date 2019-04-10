@@ -30,14 +30,23 @@ test('Worked max time for Family C - Earned $189', () => {
     expect(maxFamilyC).toBe(189);
 });
 
+test('Worked for Family A from 5:20-8:20 - Earned $45', () => {
+    let threeHoursOneRate = logic.workedThreeHoursWithOneRateFamilyA();
+    expect(threeHoursOneRate).toBe(45);
+});
+
 test('Worked for Family A from 10:30-11:30 - Earned $35', () => {
     let betweenRatesFamilyA = logic.workedOneHourBetweenRatesFamilyA();
     expect(betweenRatesFamilyA).toBe(35);
 });
 
-test('Worked for Family A from 4:20-8:20 - Earned $45', () => {
-    let threeHoursOneRate = logic.workedThreeHoursWithOneRateFamilyA();
-    expect(threeHoursOneRate).toBe(45);
+test('Worked for Family A from 5:01-5:02 - Earned $15', () => {
+    let oneMinuteOfWork = logic.workedOneMinuteFamilyA();
+    expect(oneMinuteOfWork).toBe(15);
 });
 
+test('Worked for Family B from 9:58-12:02 - Earned $40', () => {
+    let twoHoursFourMinutes = logic.twoHoursFourMinutesFamilyB();
+    expect(twoHoursFourMinutes).toBe(40);
+});
 
