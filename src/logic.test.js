@@ -6,11 +6,11 @@ test('Start Time Before End Time', () => {
 });
 
 test('Starts no earlier than 5:00PM', () => {
-    let startTimeCheck = logic.verifyStartTime("2018-06-12T09:30");
+    let startTimeCheck = logic.verifyStartTime("2018-06-12T17:30");
     expect(startTimeCheck).toBe(true);
 });
 
 test('Leaves no later than 4:00AM', () => {
-    let endTimeCheck = logic.verifyEndTime("2018-06-12T09:30");
+    let endTimeCheck = logic.verifyEndTime("2018-06-12T01:30");
     expect(endTimeCheck).toBe(true);
 });

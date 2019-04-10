@@ -1,7 +1,7 @@
 // **********************************************************
 // The babysitter:
 //
-// starts no earlier than 5:00PM
+// starts no earlier than 5:00PM 
 // leaves no later than 4:00AM
 // only babysits for one family per night
 // gets paid for full hours (no fractional hours)
@@ -21,7 +21,8 @@
 
 function isDateBetweenTimes(testDate) {
     const hour = testDate.getHours();
-    if(hour>17 || hour < 4){
+    if(hour>=17 || hour <4){
+        //todo add logic for leaving at 4am
         return true;
     }else{
         return false;
