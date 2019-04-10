@@ -29,3 +29,8 @@ test('Worked max time for Family C - Earned $189', () => {
     let maxFamilyC = logic.workedMaxTimeForFamilyC();
     expect(maxFamilyC).toBe(189);
 });
+
+test('Worked for Family A from 10:30-11:30 - Earned $35', () => {
+    let betweenRatesFamilyA = logic.workedOneHourBetweenRatesFamilyA();
+    expect(betweenRatesFamilyA).toBe(35);
+});

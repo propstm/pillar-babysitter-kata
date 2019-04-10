@@ -19,36 +19,51 @@
 // ****************
 
 function calculatePay(startTime, endTime, family){
-    const dateStart = new Date(startTime);
-    const dateEnd = new Date(endTime);
-    
     if(family === "family A"){
-        return babysatForFamilyA(dateStart, dateEnd);
+        return babysatForFamilyA(startTime, endTime);
     }
     if(family === "family B"){
-        return babysatForFamilyB(dateStart, dateEnd);
+        return babysatForFamilyB(startTime, endTime);
     }
-    if(family === "family B"){
-        return babysatForFamilyC(dateStart, dateEnd);
+    if(family === "family C"){
+        return babysatForFamilyC(startTime, endTime);
     }
 }
 
-function babysatForFamilyA(dateStart, dateEnd){
+function babysatForFamilyA(start, end){
     // Family A pays $15 per hour before 11pm, 
     // $20 per hour the rest of the night
+    const dateStart = new Date(end);
+    const dateEnd = new Date(end);
     const startTime = dateStart.getHours();
     const endTime = dateEnd.getHours();
     let totalPayment = 0;
 
+    /*
+    if start and end before 11
+        rate is 15 * hrs work
 
-    if(endTime < 12 && endTime > 4){
-        //leaving before 12am
-        totalPayment = 15 *(11 - startTime);
-    }else if(endTime == 12){
-        totalPayment = 110; 
-    }else{
-        //end time after midnight
-        totalPayment = 110 + (20 * endTime)
+    if start before 11 && end time after 11
+        if(end time = 12)
+            rate is ((11-startTime)* 15) + 20 
+        if(end time < 4){
+            (rate is (11-startTime)* 15) + 20 + (20 * endTime)
+        }
+    */
+
+    if(endTime <= 11 && endTime > 4 && startTime < 12){
+        //leaving before 11am
+        totalPayment = (endTime - startTime) * 15;
+    }
+    if(startTime < 12 && endTime == 12){
+        // leaving before 12
+        totalPayment = (15 *(11 - (startTime-1))) + 20;
+        
+    }
+    if(startTime < 11 && endTime <=4){
+        // leaving after midnight
+        const payToMidnight = (15 *(11 - startTime-1)) + 20;
+        totalPayment = (20 * endTime) + payToMidnight;
     }
 
     return totalPayment;
@@ -70,11 +85,28 @@ function babysatForFamilyC(dateStart, dateEnd){
     const startTime = dateStart.getHours();
     const endTime = dateEnd.getHours();
     let totalPayment = 0;
+
+    if(endTime < 12 && endTime > 4){
+        //leaving before 12am
+        if(endTime <= 9){
+            totalPayment = 21 *(endTime - startTime);
+        }
+        if(endTime > 9 && endTime <= 12){
+            totalPayment = totalPayment + (15 * endTime);  
+        }
+
+    
+    }else if(endTime == 12){
+        totalPayment = 110; 
+    }else{
+        //end time after midnight
+        totalPayment = 110 + (20 * endTime)
+    }
 }
 
 function isDateBetweenTimes(testDate) {
-    const hour = testDate.getHours();
-    if(hour>=17 || hour <5){
+    let hour = testDate.getHours();
+    if(hour >= 17 || hour <= 4){
         //todo add logic for leaving at 4am
         return true;
     }else{
@@ -101,13 +133,16 @@ module.exports = {
         }
     },
     workedMaxTimeForFamilyA(){
-        return calculatePay("2018-06-12T197:00", "2018-06-13T04:00", "family A");
+        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "family A");
     },
     workedMaxTimeForFamilyB(){
-        return calculatePay("2018-06-12T197:00", "2018-06-13T04:00", "family B");
+        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "family B");
     },
     workedMaxTimeForFamilyC(){
-        return calculatePay("2018-06-12T197:00", "2018-06-13T04:00", "family C");
+        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "family C");
+    },
+    workedOneHourBetweenRatesFamilyA(){
+        return calculatePay("2018-06-12T22:20", "2018-06-13T0423:10", "family A");
     }
 
 
