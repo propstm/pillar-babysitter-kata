@@ -14,3 +14,18 @@ test('Leaves no later than 4:00AM', () => {
     let endTimeCheck = logic.verifyEndTime("2018-06-12T01:30");
     expect(endTimeCheck).toBe(true);
 });
+
+test('Worked max time for Family A - Earned $190', () => {
+    let maxFamilyA = logic.workedMaxTimeForFamilyA();
+    expect(maxFamilyA).toBe(190);
+});
+
+test('Worked max time for Family B - Earned $136', () => {
+    let maxFamilyB = logic.workedMaxTimeForFamilyB();
+    expect(maxFamilyB).toBe(136);
+});
+
+test('Worked max time for Family C - Earned $189', () => {
+    let maxFamilyC = logic.workedMaxTimeForFamilyC();
+    expect(maxFamilyC).toBe(189);
+});

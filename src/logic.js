@@ -18,10 +18,63 @@
 // Calculate total pay, based on babysitter start and end time, and a family.
 // ****************
 
+function calculatePay(startTime, endTime, family){
+    const dateStart = new Date(startTime);
+    const dateEnd = new Date(endTime);
+    
+    if(family === "family A"){
+        return babysatForFamilyA(dateStart, dateEnd);
+    }
+    if(family === "family B"){
+        return babysatForFamilyB(dateStart, dateEnd);
+    }
+    if(family === "family B"){
+        return babysatForFamilyC(dateStart, dateEnd);
+    }
+}
+
+function babysatForFamilyA(dateStart, dateEnd){
+    // Family A pays $15 per hour before 11pm, 
+    // $20 per hour the rest of the night
+    const startTime = dateStart.getHours();
+    const endTime = dateEnd.getHours();
+    let totalPayment = 0;
+
+
+    if(endTime < 12 && endTime > 4){
+        //leaving before 12am
+        totalPayment = 15 *(11 - startTime);
+    }else if(endTime == 12){
+        totalPayment = 110; 
+    }else{
+        //end time after midnight
+        totalPayment = 110 + (20 * endTime)
+    }
+
+    return totalPayment;
+}
+
+function babysatForFamilyB(dateStart, dateEnd){
+    // Family B pays $12 per hour before 10pm, 
+    // $8 between 10 and 12, 
+    // $16 the rest of the night
+    const startTime = dateStart.getHours();
+    const endTime = dateEnd.getHours();
+    let totalPayment = 0;
+    return totalPayment;
+}
+
+function babysatForFamilyC(dateStart, dateEnd){
+    // Family C pays $21 per hour before 9pm, 
+    // then $15 the rest of the night
+    const startTime = dateStart.getHours();
+    const endTime = dateEnd.getHours();
+    let totalPayment = 0;
+}
 
 function isDateBetweenTimes(testDate) {
     const hour = testDate.getHours();
-    if(hour>=17 || hour <4){
+    if(hour>=17 || hour <5){
         //todo add logic for leaving at 4am
         return true;
     }else{
@@ -46,6 +99,17 @@ module.exports = {
         }else{
             return true;
         }
+    },
+    workedMaxTimeForFamilyA(){
+        return calculatePay("2018-06-12T197:00", "2018-06-13T04:00", "family A");
+    },
+    workedMaxTimeForFamilyB(){
+        return calculatePay("2018-06-12T197:00", "2018-06-13T04:00", "family B");
+    },
+    workedMaxTimeForFamilyC(){
+        return calculatePay("2018-06-12T197:00", "2018-06-13T04:00", "family C");
     }
+
+
 
 };
