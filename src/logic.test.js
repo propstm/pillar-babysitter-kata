@@ -1,18 +1,8 @@
 import logic from './logic';
 
-test('Start Time Before End Time', () => {
-    let startTimeBeforeEndTime = logic.startTimeBeforeEndTime("2018-06-12T19:30", "2018-07-12T19:30");
+test('Start Time Before End Time and is between 5pm and 4am', () => {
+    let startTimeBeforeEndTime = logic.verifyTimeInputs("2018-06-12T19:30", "2018-07-12T20:30");
     expect(startTimeBeforeEndTime).toBe(true);
-});
-
-test('Starts no earlier than 5:00PM', () => {
-    let startTimeCheck = logic.verifyStartTime("2018-06-12T17:30");
-    expect(startTimeCheck).toBe(true);
-});
-
-test('Leaves no later than 4:00AM', () => {
-    let endTimeCheck = logic.verifyEndTime("2018-06-12T01:30");
-    expect(endTimeCheck).toBe(true);
 });
 
 test('Worked max time for Family A - Earned $190', () => {
@@ -45,8 +35,8 @@ test('Worked for Family A from 5:01-5:02 - Earned $15', () => {
     expect(oneMinuteOfWork).toBe(15);
 });
 
-test('Worked for Family B from 9:58-12:02 - Earned $40', () => {
-    let twoHoursFourMinutes = logic.twoHoursFourMinutesFamilyB();
-    expect(twoHoursFourMinutes).toBe(40);
+test('Worked for Family B from 9:58-12:02 - Earned $44', () => {
+    let twoHoursFourMinutes = logic.workedTwoHoursFourMinutesFamilyB();
+    expect(twoHoursFourMinutes).toBe(44);
 });
 
