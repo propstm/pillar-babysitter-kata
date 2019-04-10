@@ -19,9 +19,28 @@
 // ****************
 
 
+function isDateBetweenTimes(testDate) {
+    const hour = testDate.getHours();
+    if(hour>17 || hour < 4){
+        return true;
+    }else{
+        return false;
+    }  
+}
+
 module.exports = {
+    verifyStartTime: function (startTime){
+        const date = new Date(startTime);
+        return isDateBetweenTimes(date);
+    },
+    verifyEndTime: function(endTime){
+        const date = new Date(endTime);
+        return isDateBetweenTimes(date);
+    },
     startTimeBeforeEndTime: function (startTime, endTime) {
-        if(startTime > endTime){
+        const dateStart = new Date(startTime);
+        const dateEnd = new Date(endTime);
+        if(dateStart > dateEnd){
             return false;
         }else{
             return true;
