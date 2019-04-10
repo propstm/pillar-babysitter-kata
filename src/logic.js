@@ -7,13 +7,13 @@ function calculatePay(start, end, family){
     if(!verifyStartAndEndTime(dateStart, dateEnd)){
         return 0;
     }
-    if(family === "family A"){
+    if(family === "Family A"){
         return babysatForFamilyA(startTime, endTime);
     }
-    if(family === "family B"){
+    if(family === "Family B"){
         return babysatForFamilyB(startTime, endTime);
     }
-    if(family === "family C"){
+    if(family === "Family C"){
         return babysatForFamilyC(startTime, endTime);
     }
 }
@@ -114,24 +114,27 @@ module.exports = {
         return verifyStartAndEndTime("2018-06-12T17:00", "2018-06-13T04:00");
     },
     workedMaxTimeForFamilyA(){
-        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "family A");
+        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "Family A");
     },
     workedMaxTimeForFamilyB(){
-        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "family B");
+        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "Family B");
     },
     workedMaxTimeForFamilyC(){
-        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "family C");
+        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "Family C");
     },
     workedOneHourBetweenRatesFamilyA(){
-        return calculatePay("2018-06-12T22:20", "2018-06-13T23:10", "family A");
+        return calculatePay("2018-06-12T22:20", "2018-06-13T23:10", "Family A");
     },
     workedThreeHoursWithOneRateFamilyA(){
-        return calculatePay("2018-06-12T17:20", "2018-06-13T20:20", "family A");
+        return calculatePay("2018-06-12T17:20", "2018-06-13T20:20", "Family A");
     },
     workedOneMinuteFamilyA(){
-        return calculatePay("2018-06-12T17:20", "2018-06-13T17:21", "family A");
+        return calculatePay("2018-06-12T17:20", "2018-06-13T17:21", "Family A");
     },
     workedTwoHoursFourMinutesFamilyB(){
-        return calculatePay("2018-06-12T21:58", "2018-06-13T00:02", "family B");
+        return calculatePay("2018-06-12T21:58", "2018-06-13T00:02", "Family B");
+    },
+    calculatePay(start, end, family){
+        return calculatePay(start, end, family);
     }    
 };

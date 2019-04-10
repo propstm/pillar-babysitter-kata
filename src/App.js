@@ -8,6 +8,8 @@ import TextField from '@material-ui/core/TextField';
 import logo from './logo.svg';
 import './App.css';
 import { Button } from '@material-ui/core';
+import logic from "./logic"
+
 
 const styles = theme => ({
 
@@ -19,34 +21,27 @@ class App extends Component {
     super(props);
     this.state = {
       family: '',
-      startDateTime: '',
-      endDateTime: '',
+      startTimeTextField: '',
+      endTimeTextField: '',
     };
 
-    this.handleSelectValueChange = this.handleSelectValueChange.bind(this);
-    this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
-    this.handleEndTimeChange = this.handleEndTimeChange.bind(this);
+    this.onValueChange = this.onValueChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
-  handleSelectValueChange(event){
+  onValueChange(event){
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  handleStartTimeChange(event){
-
-    this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
-  }
-
-  handleEndTimeChange(event){
-    
-    this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
-  }
 
   handleSubmit(event){
     event.preventDefault();
     console.log('submit hours clicked');
+    console.log("Family:" + this.state.family);
+    console.log("StartTime:" + this.state.startTimeTextField);
+    console.log("EndTime:"+ this.state.endTimeTextField);
+    console.log(logic.calculatePay(this.state.startTimeTextField, this.state.endTimeTextField, this.state.family));
+    
   }
 
 
@@ -58,7 +53,7 @@ class App extends Component {
           <InputLabel htmlFor="family-simple">Family:</InputLabel>
           <Select
             value={this.state.family}
-            onChange={this.handleSelectValueChange}
+            onChange={this.onValueChange}
             inputProps={{
               name: 'family',
               id: 'family-simple',
@@ -74,26 +69,32 @@ class App extends Component {
         </FormControl>
         <FormControl className="formControl">
           <TextField
-            id="datetime-local"
+            id="startTimeTextField"
+            name="startTimeTextField"
             label="Start Time"
             type="datetime-local"
-            onChange={this.handleStartTimeChange}
+            onChange={this.onValueChange}
             //value={this.state.startDateTime}
             className={styles.textField}
             InputLabelProps={{
+              name: 'startTimeLabel',
+              id: 'startTimeLabel',
               shrink: true,
             }}
           />
           </FormControl>
         <FormControl className="formControl">
           <TextField
-            id="datetime-local"
+            id="endTimeTextField"
+            name="endTimeTextField"
             label="End Time"
             type="datetime-local"
-            //value={this.state.endDateTime}
+            onChange={this.onValueChange}
             
             className={styles.textField}
             InputLabelProps={{
+              name: 'endTimeLabel',
+              id: 'endTimeLabel',
               shrink: true,
             }}
           />
@@ -105,6 +106,9 @@ class App extends Component {
           <input type="submit" value="Submit" />
           </FormControl>
         </form>
+        <div className="output">
+          <p><span className="outputTitle">Total Earned: </span> $500</p>
+        </div>
       </div>
     );
   }
