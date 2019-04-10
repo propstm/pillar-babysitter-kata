@@ -46,11 +46,6 @@ function babysatForFamilyA(start, end){
 }
 
 function hourlyRate(startTime, endTime, rate, rateWindowStart, rateWindowEnd){
-    // startTime = 17;
-    // endTime = 4;
-    // rate = 20;
-    // rateWindowStart = 23;
-    // rateWindowEnd = 28;
     let earningStartTime = 0;
     let earningEndTime = 0;
 
@@ -85,39 +80,36 @@ function hourlyRate(startTime, endTime, rate, rateWindowStart, rateWindowEnd){
 
 }
 
-function babysatForFamilyB(dateStart, dateEnd){
+function babysatForFamilyB(start, end){
     // Family B pays $12 per hour before 10pm, 
     // $8 between 10 and 12, 
     // $16 the rest of the night
+    const dateStart = new Date(start);
+    const dateEnd = new Date(end);
     const startTime = dateStart.getHours();
     const endTime = dateEnd.getHours();
     let totalPayment = 0;
-    return totalPayment;
+
+    totalPayment += hourlyRate(startTime, endTime, 12, 17, 22); // $12/hr
+    totalPayment += hourlyRate(startTime, endTime, 8, 22, 24); // $8/hr
+    totalPayment += hourlyRate(startTime, endTime, 16, 24, 4); // $16/hr
+
+    return totalPayment; 
 }
 
-function babysatForFamilyC(dateStart, dateEnd){
+function babysatForFamilyC(start, end){
     // Family C pays $21 per hour before 9pm, 
     // then $15 the rest of the night
+    const dateStart = new Date(start);
+    const dateEnd = new Date(end);
     const startTime = dateStart.getHours();
     const endTime = dateEnd.getHours();
     let totalPayment = 0;
 
-    if(endTime < 12 && endTime > 4){
-        //leaving before 12am
-        if(endTime <= 9){
-            totalPayment = 21 *(endTime - startTime);
-        }
-        if(endTime > 9 && endTime <= 12){
-            totalPayment = totalPayment + (15 * endTime);  
-        }
+    totalPayment += hourlyRate(startTime, endTime, 21, 17, 21); // $21/hr
+    totalPayment += hourlyRate(startTime, endTime, 15, 21, 4); // $15/hr
 
-    
-    }else if(endTime == 12){
-        totalPayment = 110; 
-    }else{
-        //end time after midnight
-        totalPayment = 110 + (20 * endTime)
-    }
+    return totalPayment; 
 }
 
 function isDateBetweenTimes(testDate) {
@@ -159,8 +151,8 @@ module.exports = {
     },
     workedOneHourBetweenRatesFamilyA(){
         return calculatePay("2018-06-12T22:20", "2018-06-13T0423:10", "family A");
+    },
+    workedThreeHoursWithOneRateFamilyA(){
+        return calculatePay("2018-06-12T17:20", "2018-06-13T0420:20", "family A");
     }
-
-
-
 };
