@@ -1,3 +1,36 @@
+# Pillar - Babysitter Kata
+
+## Background
+This kata simulates a babysitter working and getting paid for one night.  The rules are pretty straight forward.
+
+## Feature
+*As a babysitter<br>
+In order to get paid for 1 night of work<br>
+I want to calculate my nightly charge<br>*
+
+## Requirements
+The babysitter:
+- starts no earlier than 5:00PM
+- leaves no later than 4:00AM
+- only babysits for one family per night
+- gets paid for full hours (no fractional hours)
+- should be prevented from mistakes when entering times (e.g. end time before start time, or outside of allowable work hours)
+
+The job:
+- Pays different rates for each family (based on bedtimes, kids and pets, etc...)
+- Family A pays $15 per hour before 11pm, and $20 per hour the rest of the night
+- Family B pays $12 per hour before 10pm, $8 between 10 and 12, and $16 the rest of the night
+- Family C pays $21 per hour before 9pm, then $15 the rest of the night
+- The time ranges are the same as the babysitter (5pm through 4am)
+
+Deliverable:
+- Calculate total pay, based on babysitter start and end time, and a family.
+
+## Instructions
+- Check out repository
+- Tests are written in Jest.  Run `npm test` to run the tests for babysitting logic. Babysitting pay logic is in logic.js file, tests are in the corresponding logic.test.js file
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -22,47 +55,3 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
