@@ -113,27 +113,6 @@ module.exports = {
     verifyTimeInputs(){
         return verifyStartAndEndTime("2018-06-12T17:00", "2018-06-13T04:00");
     },
-    workedMaxTimeForFamilyA(){
-        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "Family A");
-    },
-    workedMaxTimeForFamilyB(){
-        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "Family B");
-    },
-    workedMaxTimeForFamilyC(){
-        return calculatePay("2018-06-12T17:00", "2018-06-13T04:00", "Family C");
-    },
-    workedOneHourBetweenRatesFamilyA(){
-        return calculatePay("2018-06-12T22:20", "2018-06-13T23:10", "Family A");
-    },
-    workedThreeHoursWithOneRateFamilyA(){
-        return calculatePay("2018-06-12T17:20", "2018-06-13T20:20", "Family A");
-    },
-    workedOneMinuteFamilyA(){
-        return calculatePay("2018-06-12T17:20", "2018-06-13T17:21", "Family A");
-    },
-    workedTwoHoursFourMinutesFamilyB(){
-        return calculatePay("2018-06-12T21:58", "2018-06-13T00:02", "Family B");
-    },
     calculatePay(start, end, family){
         return calculatePay(start, end, family);
     }    
