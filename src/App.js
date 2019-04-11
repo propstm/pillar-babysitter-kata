@@ -5,9 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import logo from './logo.svg';
 import './App.css';
-import { Button } from '@material-ui/core';
 import logic from "./logic"
 
 
@@ -36,12 +34,18 @@ class App extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    console.log('submit hours clicked');
-    console.log("Family:" + this.state.family);
-    console.log("StartTime:" + this.state.startTimeTextField);
-    console.log("EndTime:"+ this.state.endTimeTextField);
-    console.log(logic.calculatePay(this.state.startTimeTextField, this.state.endTimeTextField, this.state.family));
-    
+
+    //Validate input and return output
+    let result = logic.calculatePay(this.state.startTimeTextField, this.state.endTimeTextField, this.state.family);
+    let element = document.querySelector(".output");
+    if(result.length > 4){
+      //error
+      element.innerHTML = '<p><span className="outputTitle">ERROR: </span>'+ result+ '</p>';
+    }else{
+      element.innerHTML = '<p><span className="outputTitle">TOTAL EARNED: </span>$'+ result+ '</p>';
+    }
+    console.log();
+
   }
 
 
@@ -49,6 +53,7 @@ class App extends Component {
     return (
       <div className="App">
         <form className="babysittingEveningForm" onSubmit={this.handleSubmit}>
+        <h6>Babysitting Payment Calculator</h6>
         <FormControl className="formControl">
           <InputLabel htmlFor="family-simple">Family:</InputLabel>
           <Select
@@ -100,15 +105,12 @@ class App extends Component {
           />
           </FormControl>
           <FormControl className="formControl">
-          {/* <Button variant="contained" color="primary" className="button">
-                Primary
-          </Button> */}
           <input type="submit" value="Submit" />
           </FormControl>
+          <br/><br/>
+          <div className="output"></div>
+
         </form>
-        <div className="output">
-          <p><span className="outputTitle">Total Earned: </span> $500</p>
-        </div>
       </div>
     );
   }

@@ -1,5 +1,15 @@
 import logic from './logic';
 
+test('Test Invalid Family Selection', () => {
+    let returnErrorWithBadFamilySelection = logic.calculatePay("2018-06-12T21:58", "2018-06-13T00:02", "");
+    expect(returnErrorWithBadFamilySelection).toBe("Family selection is invalid.  You must select the family you babysat for. ");
+});
+
+test('Test Invalid Date Selection', () => {
+    let returnErrorWithDateProblem = logic.calculatePay("2018-06-12T221:58", "2018-06-13T00:02", "Family B");
+    expect(returnErrorWithDateProblem).toBe("The dates entered are invalid.  The longest amount of time you can babysit is for 11 hours. This is from 5pm on the first day, until 4am on the next. ");
+});
+
 test('Start Time Before End Time and is between 5pm and 4am', () => {
     let startTimeBeforeEndTime = logic.verifyTimeInputs("2018-06-12T19:30", "2018-07-12T20:30");
     expect(startTimeBeforeEndTime).toBe(true);

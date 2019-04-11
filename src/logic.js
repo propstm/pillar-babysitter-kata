@@ -89,7 +89,6 @@ function hourlyRate(startTime, endTime, rate, rateWindowStart, rateWindowEnd){
 function isDateBetweenTimes(testDate) {
     let hour = testDate.getHours();
     if(hour >= 17 || hour <= 4){
-        //todo add logic for leaving at 4am
         return true;
     }else{
         return false;
@@ -109,11 +108,35 @@ function verifyStartAndEndTime(startTime, endTime){
     return true;
 }
 
+function differenceInHours(start, end){
+    const dateStart = new Date(start);
+    const dateEnd = new Date(end);
+    return (((dateStart.getTime()-dateEnd.getTime())/1000)/60)/60; //values of getTime() are in milliseconds need to convert to hours
+}
+
+function validateInputs(start, end, family){
+    let errorTextString = "";
+
+    if(family !== "Family A" && family !== "Family B" && family !== "Family C"){
+        errorTextString = "Family selection is invalid.  You must select the family you babysat for. "
+    }
+    
+    if(differenceInHours(start, end) > 11 || !verifyStartAndEndTime(start, end)){
+        errorTextString = errorTextString + 'The dates entered are invalid.  The longest amount of time you can babysit is for 11 hours. This is from 5pm on the first day, until 4am on the next. ';
+    }
+
+    return errorTextString;
+}
+
 module.exports = {
     verifyTimeInputs(){
         return verifyStartAndEndTime("2018-06-12T17:00", "2018-06-13T04:00");
     },
     calculatePay(start, end, family){
+
+        if(validateInputs(start, end, family) !== ""){
+            return validateInputs(start, end, family);
+        }
         return calculatePay(start, end, family);
     }    
 };

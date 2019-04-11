@@ -9,27 +9,31 @@
   display: 'block';
 }
 
+.output span{
+  font-weight: bold;
+}
+
 form{
   width:300px;
   padding:10px;
   border:1px solid black;
 }
 .formControl{
+  padding-top:25px;
   min-width: 350px;
-  padding-bottom: 5px;
+  padding: 15px;
 }
 textField {
   width: 200px;
 }
 
-selectEmpty{
-  width: 300px;
-}
 select{
-  minWidth: 200px;
+  width: 200px;
 }
 
-button{
+input{
+  min-width: 100px;
+  margin-top:25px;
   padding:10px;
 }
 
