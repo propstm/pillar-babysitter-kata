@@ -28,9 +28,15 @@ Deliverable:
 
 ### Instructions
 - Check out repository
-- Tests are written in Jest.  Run `npm run test` to run the tests for babysitting logic. Babysitting pay logic is in logic.js file, tests are in the corresponding logic.test.js file
-- User interface is in the App.js file. Run `npm run build` to build the project which will launch the calculator in your web browser.
+- Tests are written in Jest.  From the terminal run `npm run test` to run the tests for babysitting logic. Babysitting pay logic is in logic.js file, tests are in the corresponding logic.test.js file
+- User interface is in the App.js file. From the terminal run `npm run build` to build the project which will launch the calculator in your web browser.
+
+
+
 ![Screenshot of babysitting calculator](https://github.com/propstm/pillar-babysitter-kata/blob/master/babysitterCalcScreenshot.png)
+
+
+
 
 
 
