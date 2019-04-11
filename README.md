@@ -28,6 +28,7 @@ Deliverable:
 
 ### Instructions
 - Check out repository
+- The tests and application are run using npm. If you do not already have Node installed you can download it from https://nodejs.org/en/download/
 - Tests are written in Jest.  From the terminal run `npm run test` to run the tests for babysitting logic. Babysitting pay logic is in logic.js file, tests are in the corresponding logic.test.js file
 - User interface is in the App.js file. From the terminal run `npm run build` to build the project which will launch the calculator in your web browser.
 
